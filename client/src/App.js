@@ -6,20 +6,38 @@ import "@fortawesome/fontawesome-free/js/all.js";
 import Navbar from "./components/layouts/Navbar";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import ContactState from "./context/contact/ContactState";
+import AuthState from "./context/auth/AuthState";
+import Register from "./components/auth/register";
+import Login from "./components/auth/login";
+import Alerts from "./components/alert/Alerts";
+import AlertState from "./context/alert/AlertState";
+import setAuthToken from "./utils/setAuthToken";
+
+if (localStorage.getItem("token")) setAuthToken(localStorage.getItem("token"));
 
 const App = () => {
   return (
-    <Router>
-      <Fragment>
-        <Navbar></Navbar>
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route exact path="/about" component={About}></Route>
-          </Switch>
-        </div>
-      </Fragment>
-    </Router>
+    <AuthState>
+      <ContactState>
+        <AlertState>
+          <Router>
+            <Fragment>
+              <Navbar></Navbar>
+              <div className="container">
+                <Alerts></Alerts>
+                <Switch>
+                  <Route exact path="/" component={Home}></Route>
+                  <Route exact path="/about" component={About}></Route>
+                  <Route exact path="/register" component={Register}></Route>
+                  <Route exact path="/login" component={Login}></Route>
+                </Switch>
+              </div>
+            </Fragment>
+          </Router>
+        </AlertState>
+      </ContactState>
+    </AuthState>
   );
 };
 
