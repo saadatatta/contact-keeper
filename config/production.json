@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://saadat:amaterasa@cluster0-iwtea.mongodb.net/contact-keeper",
+  "mongoURI": "mongodb+srv://saadat:amaterasa@cluster0-iwtea.mongodb.net/test?retryWrites=true&w=majority",
   "jwtToken": "123456"
 }
